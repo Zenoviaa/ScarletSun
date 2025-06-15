@@ -4,6 +4,7 @@ namespace ScarletSun.Common.MagicSystem
 {
     internal abstract class Enchantment : ModItem
     {
+        public bool isTimedEnchantment;
         public override void SetDefaults()
         {
 

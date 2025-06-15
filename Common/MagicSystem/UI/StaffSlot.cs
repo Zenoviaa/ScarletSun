@@ -62,7 +62,16 @@ namespace ScarletSun.Common.MagicSystem.UI
                 ItemSlot.Handle(ref Item, _context);
                 //So when we switch a staff we need to create a new editing context.
                 //So we need something to hold that context.
-
+                MagicUISystem magicUISystem = ModContent.GetInstance<MagicUISystem>();
+ 
+                if (Item.IsAir)
+                {
+                    magicUISystem.EmptyUI();
+                }
+                else if (Item.ModItem is Staff staff)
+                {
+                    magicUISystem.OpenUI(staff);
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ScarletSun.Common.MagicSystem.UI;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,6 +49,27 @@ namespace ScarletSun.Common.MagicSystem
             Item.mana = 10;
             Item.shootSpeed = 10;
             Item.shoot = ModContent.ProjectileType<MagicProjectile>();
+        }
+        public virtual int GetNormalSlotCount()
+        {
+            return 5;
+        }
+
+        public virtual int GetTimedSlotCount()
+        {
+            return 2;
+        }
+        public override bool CanRightClick()
+        {
+            return true;
+        }
+
+        public override bool ConsumeItem(Player player) => false;
+
+        public override void RightClick(Player player)
+        {
+            base.RightClick(player);
+            ModContent.GetInstance<MagicUISystem>().OpenUI(this);
         }
     }
 }

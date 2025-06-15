@@ -7,6 +7,22 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Common\MagicSystem\UI\ElementSlot.png" />
+	  <None Remove="Common\MagicSystem\UI\EnchantmentCard.png" />
+	  <None Remove="Common\MagicSystem\UI\EnchantmentOrb.png" />
+	  <None Remove="Common\MagicSystem\UI\EnchantmentPanel.png" />
+	  <None Remove="Common\MagicSystem\UI\EnchantmentSlot.png" />
+	  <None Remove="Common\MagicSystem\UI\Paper.png" />
+	  <None Remove="Common\MagicSystem\UI\PaperSelected.png" />
+	  <None Remove="Common\MagicSystem\UI\TimedEnchantmentCard.png" />
+	  <None Remove="Common\MagicSystem\UI\TimedEnchantmentSlot.png" />
+	  <None Remove="Items\Staffs\CelestiaWand.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Assets\Textures\" />
+	  <Folder Include="Items\Enchantments\" />
+	</ItemGroup>
 
 	<!-- References -->
 

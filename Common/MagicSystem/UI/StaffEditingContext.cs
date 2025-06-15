@@ -13,12 +13,12 @@ namespace ScarletSun.Common.MagicSystem.UI
 
         internal void SetElement(Item item)
         {
-            throw new NotImplementedException();
+         //   throw new NotImplementedException();
         }
 
         internal void SetEnchantment(Item item, int index)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

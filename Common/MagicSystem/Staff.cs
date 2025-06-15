@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +8,7 @@ namespace ScarletSun.Common.MagicSystem
     internal abstract class Staff : ModItem
     {
         private Element _element;
-        private List<Enchantment> _enchantments;    
+        private List<Enchantment> _enchantments;
         public Element Element
         {
             get

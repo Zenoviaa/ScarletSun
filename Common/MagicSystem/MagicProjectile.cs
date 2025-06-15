@@ -12,6 +12,8 @@ namespace ScarletSun.Common.MagicSystem
     {
         private List<Enchantment> _enchantments;
         private Element _element;
+        private bool _initialized;
+        private Player Owner => Main.player[Projectile.owner];
 
         public override string Texture => AssetHelper.EmptyTexture;
         public Element Element
@@ -37,6 +39,7 @@ namespace ScarletSun.Common.MagicSystem
                     _enchantments = new List<Enchantment>();
                 return _enchantments;
             }
+
         }
 
         public override void SetStaticDefaults()
@@ -58,6 +61,22 @@ namespace ScarletSun.Common.MagicSystem
         public override void AI()
         {
             base.AI();
+            //By initializing this way, it guarantees that when netcoding everyone can see what's happening
+            //Without even needing to do a big netsync
+            if (!_initialized)
+            {
+                if (Owner.HeldItem.ModItem is Staff staff)
+                {
+                    Element = staff.Element;
+                    Enchantments.Clear();
+                    foreach (var enchantment in staff.Enchantments)
+                    {
+                        Enchantments.Add(enchantment);
+                    }
+                    _initialized = true;
+                }
+            }
+
             //This is where we'll put all the custom AI         
             //Update the element ai first.
             Element.AI(this);

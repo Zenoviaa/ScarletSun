@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -30,6 +31,10 @@ namespace ScarletSun.Common.MagicSystem.UI
 
             //Set the state of the interface.
             _staffInterface.SetState(enchantmentMenuUI);
+        }
+        internal void EmptyUI()
+        {
+            throw new NotImplementedException();
         }
 
         internal void CloseUI()
@@ -80,5 +85,6 @@ namespace ScarletSun.Common.MagicSystem.UI
                     InterfaceScaleType.UI));
             }
         }
+
     }
 }

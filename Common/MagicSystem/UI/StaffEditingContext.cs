@@ -15,5 +15,10 @@ namespace ScarletSun.Common.MagicSystem.UI
         {
             throw new NotImplementedException();
         }
+
+        internal void SetEnchantment(Item item, int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

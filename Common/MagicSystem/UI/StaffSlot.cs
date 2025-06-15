@@ -31,6 +31,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         }
 
         public Asset<Texture2D> EnchantmentCardAsset { get; private set; }
+
         public string GetEnchantmentCardTexturePath()
         {
             string texturePath = GetType().DirectoryHere() + "/EnchantmentCard";
@@ -49,6 +50,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             //If we want to replace with air, yeah.
             if (item.IsAir)
                 return true;
+
             return false;
         }
 
@@ -58,6 +60,9 @@ namespace ScarletSun.Common.MagicSystem.UI
             {
                 //Handles all the click and hover actions based on the context
                 ItemSlot.Handle(ref Item, _context);
+                //So when we switch a staff we need to create a new editing context.
+                //So we need something to hold that context.
+
             }
         }
 

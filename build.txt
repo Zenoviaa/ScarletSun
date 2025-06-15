@@ -1,0 +1,3 @@
+displayName = Scarlet Sun, School Of Mages
+author = Zenovia, Scolon
+version = 0.1

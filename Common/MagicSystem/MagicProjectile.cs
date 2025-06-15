@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ScarletSun.Common.Helpers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +12,8 @@ namespace ScarletSun.Common.MagicSystem
     {
         private List<Enchantment> _enchantments;
         private Element _element;
+
+        public override string Texture => AssetHelper.EmptyTexture;
         public Element Element
         {
             get

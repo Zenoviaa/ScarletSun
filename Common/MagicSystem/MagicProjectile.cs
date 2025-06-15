@@ -17,6 +17,10 @@ namespace ScarletSun.Common.MagicSystem
                     _element = new NoElement();
                 return _element;
             }
+            set
+            {
+                _element = value;
+            }
         }
 
         //Lazy loading so it's never null
@@ -52,7 +56,7 @@ namespace ScarletSun.Common.MagicSystem
             //This is where we'll put all the custom AI         
             //Update the element ai first.
             Element.AI(this);
-            for(int i = 0; i < Enchantments.Count; i++)
+            for (int i = 0; i < Enchantments.Count; i++)
             {
                 Enchantment enchantment = Enchantments[i];
                 enchantment.AI(this);

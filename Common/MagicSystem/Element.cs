@@ -1,4 +1,6 @@
-﻿using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ScarletSun.Common.MagicSystem
 {
@@ -14,7 +16,7 @@ namespace ScarletSun.Common.MagicSystem
 
         }
 
-        public virtual void DrawForm(MagicProjectile mProj)
+        public virtual void DrawForm(MagicProjectile mProj, SpriteBatch spriteBatch, ref Color lightColor)
         {
 
         }

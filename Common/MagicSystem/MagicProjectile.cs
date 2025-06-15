@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -65,7 +67,8 @@ namespace ScarletSun.Common.MagicSystem
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Element.DrawForm(this);
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            Element.DrawForm(this, spriteBatch, ref lightColor);
             return false;
         }
     }

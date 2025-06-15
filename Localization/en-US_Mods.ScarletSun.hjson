@@ -1,1 +1,18 @@
+Items: {
+	NoElement: {
+		DisplayName: No Element
+		Tooltip: ""
+	}
 
+	Radiant: {
+		DisplayName: Radiant
+		Tooltip: ""
+	}
+
+	CelestiaWand: {
+		DisplayName: Celestia Wand
+		Tooltip: ""
+	}
+}
+
+Projectiles.MagicProjectile.DisplayName: Magic Projectile

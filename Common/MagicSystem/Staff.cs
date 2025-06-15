@@ -1,9 +1,39 @@
-﻿using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ScarletSun.Common.MagicSystem
 {
     internal abstract class Staff : ModItem
     {
+        private Element _element;
+        private List<Enchantment> _enchantments;    
+        public Element Element
+        {
+            get
+            {
+                if (_element == null)
+                    _element = new NoElement();
+                return _element;
+            }
+            set
+            {
+                _element = value;
+            }
+        }
+
+        public List<Enchantment> Enchantments
+        {
+            get
+            {
+                if (_enchantments == null)
+                    _enchantments = new List<Enchantment>();
+                return _enchantments;
+            }
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -13,7 +43,13 @@ namespace ScarletSun.Common.MagicSystem
             Item.DamageType = DamageClass.Magic;
             Item.useTime = 16;
             Item.useAnimation = 16;
+            Item.useStyle = ItemUseStyleID.Thrust;
             Item.autoReuse = true;
+
+            //Shoot magic projectile of course
+            Item.mana = 10;
+            Item.shootSpeed = 10;
+            Item.shoot = ModContent.ProjectileType<MagicProjectile>();
         }
     }
 }

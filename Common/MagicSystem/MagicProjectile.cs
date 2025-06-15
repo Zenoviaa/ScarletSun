@@ -66,6 +66,12 @@ namespace ScarletSun.Common.MagicSystem
                 Enchantment enchantment = Enchantments[i];
                 enchantment.AI(this);
             }
+
+            //Just for testing to see if we're shooting anything
+            if (Main.rand.NextBool(8))
+            {
+                Dust.NewDustPerfect(Projectile.position, DustID.GemDiamond);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

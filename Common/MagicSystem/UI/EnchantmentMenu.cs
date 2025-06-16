@@ -26,6 +26,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         private UIGrid _grid;
         private UIGrid _timedGrid;
         private EnchantingPanelBackground _background;
+        private InventoryMenu _inventoryMenu;
 
         private StaffSlot _staffSlot;
         private ElementSlot _elementSlot;
@@ -33,6 +34,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         {
             _grid = new UIGrid();
             _timedGrid = new UIGrid();
+            _inventoryMenu = new InventoryMenu();
             _background = new EnchantingPanelBackground();
             _elementSlot = new ElementSlot();   
             _staffSlot = new StaffSlot();
@@ -90,14 +92,14 @@ namespace ScarletSun.Common.MagicSystem.UI
             Append(_background);
 
             _grid.Width.Set(0, 0.8f);
-            _grid.Height.Set(0, 0.4f);
+            _grid.Height.Set(0, 0.35f);
             _grid.HAlign = 0.5f;
             _grid.VAlign = 0.65f;
             _grid.ListPadding = 2f;   
             Append(_grid);
 
             _timedGrid.Width.Set(0, 0.8f);
-            _timedGrid.Height.Set(0, 0.4f);
+            _timedGrid.Height.Set(0, 0.35f);
             _timedGrid.HAlign = 0.5f;
             _timedGrid.VAlign = 1f;
             _timedGrid.ListPadding = 2f;
@@ -107,10 +109,13 @@ namespace ScarletSun.Common.MagicSystem.UI
             _staffSlot.VAlign = 0.05f;
             Append(_staffSlot);
 
-            _elementSlot.HAlign = 0.2f;
-            _elementSlot.VAlign = 0.28f;
+            _elementSlot.HAlign = 0.18f;
+            _elementSlot.VAlign = 0.22f;
             Append(_elementSlot);
 
+            _inventoryMenu.HAlign = 1f;
+            _inventoryMenu.VAlign = 0.05f;
+            Append(_inventoryMenu);
             SetPos();
         }
 

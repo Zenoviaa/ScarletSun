@@ -1,4 +1,5 @@
 ﻿using ScarletSun.Common.MagicSystem.UI;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -10,6 +11,7 @@ namespace ScarletSun.Common.MagicSystem
     {
         private Element _element;
         private List<Enchantment> _enchantments;
+        private List<Item> _enchantmentItems;
         public Element Element
         {
             get
@@ -33,6 +35,17 @@ namespace ScarletSun.Common.MagicSystem
                 return _enchantments;
             }
         }
+
+        public List<Item> EnchantmentItems
+        {
+            get
+            {
+                if (_enchantmentItems == null)
+                    _enchantmentItems = new List<Item>();
+                return _enchantmentItems;
+            }
+        }
+
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -50,6 +63,41 @@ namespace ScarletSun.Common.MagicSystem
             Item.shootSpeed = 10;
             Item.shoot = ModContent.ProjectileType<MagicProjectile>();
         }
+        internal void SetEnchantmentAtIndex(Item item, int index)
+        {
+            if (EnchantmentItems.Count > index)
+            {
+                EnchantmentItems[index] = item;
+            }
+            else
+            {
+                EnchantmentItems.Insert(index, item);
+            }
+        }
+
+        internal Item GetEnchantmentAtIndex(int index)
+        {          
+            if(EnchantmentItems.Count > index)
+            {
+                Item item = EnchantmentItems[index];
+                if(item == null)
+                {
+                    Item airItem = new Item();
+                    airItem.SetDefaults(0);
+                    EnchantmentItems[index] = airItem;
+                    return airItem;
+                }
+                else
+                {
+                    return item;
+                }
+            }
+            Item airItem2 = new Item();
+            airItem2.SetDefaults(0);
+            EnchantmentItems.Insert(index, airItem2);
+            return airItem2;
+        }
+
         public virtual int GetNormalSlotCount()
         {
             return 5;
@@ -71,5 +119,7 @@ namespace ScarletSun.Common.MagicSystem
             base.RightClick(player);
             ModContent.GetInstance<MagicUISystem>().OpenUI(this);
         }
+
+
     }
 }

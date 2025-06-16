@@ -38,6 +38,11 @@ Items: {
 		DisplayName: Revolving Lights Enchantment
 		Tooltip: ""
 	}
+
+	Hammer: {
+		DisplayName: Hammer
+		Tooltip: ""
+	}
 }
 
 Projectiles.MagicProjectile.DisplayName: Magic Projectile

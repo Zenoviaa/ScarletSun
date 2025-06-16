@@ -18,7 +18,13 @@ namespace ScarletSun.Common.MagicSystem.UI
 
         internal void SetEnchantment(Item item, int index)
         {
-            //throw new NotImplementedException();
+            staffToEdit.SetEnchantmentAtIndex(item, index);
+        }
+
+        public Item GetEnchantment(int index)
+        {
+            //Return the item
+            return staffToEdit.GetEnchantmentAtIndex(index);
         }
     }
 }

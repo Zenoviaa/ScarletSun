@@ -39,6 +39,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         public void SetContext(StaffEditingContext ctx)
         {
             _ctx = ctx;
+            Item = _ctx.GetEnchantment(_index);
         }
 
         public string GetEnchantmentCardTexturePath()

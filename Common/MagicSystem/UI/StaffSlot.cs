@@ -57,6 +57,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         public void SetContext(StaffEditingContext ctx)
         {
             _ctx = ctx;
+            Item = _ctx.staffToEdit.Item;
         }
 
         internal void HandleMouseItem()

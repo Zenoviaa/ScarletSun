@@ -35,6 +35,11 @@ namespace ScarletSun.Common.MagicSystem.UI
         internal void EmptyUI()
         {
             //throw new NotImplementedException();
+            var noStaff = new NoStaff();
+            StaffEditingContext ctx = new StaffEditingContext(noStaff);
+            EnchantmentMenu menu = enchantmentMenuUI.enchantmentMenu;
+            menu.UseContext(ctx);
+
         }
 
         internal void CloseUI()

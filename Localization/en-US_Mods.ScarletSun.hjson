@@ -18,6 +18,11 @@ Items: {
 		DisplayName: Void Ridden Staff
 		Tooltip: ""
 	}
+
+	NoStaff: {
+		DisplayName: No Staff
+		Tooltip: ""
+	}
 }
 
 Projectiles.MagicProjectile.DisplayName: Magic Projectile

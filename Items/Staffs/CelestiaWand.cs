@@ -11,5 +11,14 @@ namespace ScarletSun.Items.Staffs
             //For testing purposes
             Element = new Radiant();
         }
+
+        public override int GetNormalSlotCount()
+        {
+            return 4;
+        }
+        public override int GetTimedSlotCount()
+        {
+            return 0;
+        }
     }
 }

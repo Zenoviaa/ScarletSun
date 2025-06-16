@@ -13,6 +13,11 @@ Items: {
 		DisplayName: Celestia Wand
 		Tooltip: ""
 	}
+
+	VoidRiddenStaff: {
+		DisplayName: Void Ridden Staff
+		Tooltip: ""
+	}
 }
 
 Projectiles.MagicProjectile.DisplayName: Magic Projectile

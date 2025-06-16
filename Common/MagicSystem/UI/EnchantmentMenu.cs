@@ -57,7 +57,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         public override void OnActivate()
         {
             base.OnActivate();
-            _enchantmentPanel = ModContent.Request<Texture2D>(GetType().DirectoryHere() + $"/EnchantmentPanel", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            _enchantmentPanel = ModContent.Request<Texture2D>(GetType().DirectoryHere() + $"/EnchantingMenu", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
 
         }
 
@@ -71,7 +71,9 @@ namespace ScarletSun.Common.MagicSystem.UI
             _grid.Width.Set(0, 1f);
             _grid.Height.Set(0, 1f);
             _grid.HAlign = 0.5f;
+            _grid.VAlign = 1f;
             _grid.ListPadding = 2f;
+         
             Append(_grid);
             SetPos();
         }

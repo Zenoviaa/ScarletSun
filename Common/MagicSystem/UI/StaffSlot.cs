@@ -34,7 +34,7 @@ namespace ScarletSun.Common.MagicSystem.UI
 
         public string GetEnchantmentCardTexturePath()
         {
-            string texturePath = GetType().DirectoryHere() + "/EnchantmentCard";
+            string texturePath = GetType().DirectoryHere() + "/StaffSlot";
             return texturePath;
         }
 
@@ -90,6 +90,12 @@ namespace ScarletSun.Common.MagicSystem.UI
             //Draw item icon
             Vector2 pos = rectangle.TopLeft();
             Vector2 centerPos = pos + rectangle.Size() / 2f;
+
+            Texture2D cardTexture = EnchantmentCardAsset.Value;
+            int offset = (int)(cardTexture.Size().Y / 2);
+            spriteBatch.Draw(cardTexture, rectangle.TopLeft(), null, Color.White, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
+
+
             ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
             Main.inventoryScale = oldScale;
         }

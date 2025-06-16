@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using ScarletSun.Common.Helpers;
+using ScarletSun.Items.Forms;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +14,7 @@ namespace ScarletSun.Common.MagicSystem
     {
         private List<Enchantment> _enchantments;
         private Element _element;
+        private Form _form;
         private bool _initialized;
         private Player Owner => Main.player[Projectile.owner];
 
@@ -40,6 +43,20 @@ namespace ScarletSun.Common.MagicSystem
                 return _enchantments;
             }
 
+        }
+
+
+        public Form Form
+        {
+            get
+            {
+                if(_form == null)
+                {
+                    //Default to hammer form
+                    _form = new Hammer();
+                }
+                return _form;
+            }
         }
 
         public override void SetStaticDefaults()
@@ -85,18 +102,22 @@ namespace ScarletSun.Common.MagicSystem
                 Enchantment enchantment = Enchantments[i];
                 enchantment.AI(this);
             }
-
-            //Just for testing to see if we're shooting anything
-            if (Main.rand.NextBool(8))
-            {
-                Dust.NewDustPerfect(Projectile.position, DustID.GemDiamond);
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Element.DrawForm(this, spriteBatch, ref lightColor);
+
+            //Now we draw the form
+            Asset<Texture2D> formTexture = ModContent.Request<Texture2D>(Form.Texture);
+            Vector2 drawOrigin = formTexture.Size() / 2f;
+            Vector2 drawPosition = Projectile.Center - Main.screenPosition;
+            float drawRotation = Projectile.velocity.ToRotation();
+            spriteBatch.Draw(formTexture.Value, drawPosition, null, Color.Black, drawRotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+        
+
+
             return false;
         }
     }

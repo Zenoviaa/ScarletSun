@@ -76,7 +76,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             Height.Pixels = height;
             BackgroundColor = Color.Transparent;
             BorderColor = Color.Transparent;
-            _grid.Width.Set(0, 1f);
+            _grid.Width.Set(0, 0.9f);
             _grid.Height.Set(0, 0.4f);
             _grid.HAlign = 0.5f;
             _grid.VAlign = 0.9f;

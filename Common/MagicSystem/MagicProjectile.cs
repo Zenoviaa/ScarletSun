@@ -16,6 +16,9 @@ namespace ScarletSun.Common.MagicSystem
         private Element _element;
         private Form _form;
         private bool _initialized;
+        private float _easeInTimer;
+
+
         private Player Owner => Main.player[Projectile.owner];
 
         public override string Texture => AssetHelper.EmptyTexture;
@@ -59,6 +62,7 @@ namespace ScarletSun.Common.MagicSystem
             }
         }
 
+        public float EaseInLerp { get; private set; }
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -78,6 +82,9 @@ namespace ScarletSun.Common.MagicSystem
         public override void AI()
         {
             base.AI();
+            _easeInTimer++;
+            EaseInLerp = Easing.OutExpo(_easeInTimer / 80f);
+
             //By initializing this way, it guarantees that when netcoding everyone can see what's happening
             //Without even needing to do a big netsync
             if (!_initialized)
@@ -108,17 +115,20 @@ namespace ScarletSun.Common.MagicSystem
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
             Element.DrawForm(this, spriteBatch, ref lightColor);
+            DrawFormSprite(ref lightColor);
+            return false;
+        }
 
+        public void DrawFormSprite(ref Color lightColor)
+        {
+            SpriteBatch spriteBatch = Main.spriteBatch;
             //Now we draw the form
+            float drawScale = MathHelper.Lerp(0.125f, 1f, EaseInLerp);
             Asset<Texture2D> formTexture = ModContent.Request<Texture2D>(Form.Texture);
             Vector2 drawOrigin = formTexture.Size() / 2f;
             Vector2 drawPosition = Projectile.Center - Main.screenPosition;
             float drawRotation = Projectile.velocity.ToRotation();
-            spriteBatch.Draw(formTexture.Value, drawPosition, null, Color.Black, drawRotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
-        
-
-
-            return false;
+            spriteBatch.Draw(formTexture.Value, drawPosition, null, Color.Black, drawRotation, drawOrigin, drawScale, SpriteEffects.None, 0);
         }
     }
 }

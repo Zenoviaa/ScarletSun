@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace ScarletSun.Common.MagicSystem
 {
@@ -122,7 +123,28 @@ namespace ScarletSun.Common.MagicSystem
             base.RightClick(player);
             ModContent.GetInstance<MagicUISystem>().OpenUI(this);
         }
+        public override void SaveData(TagCompound tag)
+        {
+            base.SaveData(tag);
+            tag["enchantnum"] = EnchantmentItems.Count;
+            for (int i = 0; i < EnchantmentItems.Count; i++)
+            {
+                string key = $"enchant_{i}";
+                tag[key] = EnchantmentItems[i];
+            }
+        }
 
-
+        public override void LoadData(TagCompound tag)
+        {
+            base.LoadData(tag);
+            EnchantmentItems.Clear();
+            int num = tag.GetInt("enchantnum");
+            for (int n = 0; n < num; n++)
+            {
+                string key = $"enchant_{n}";
+                Item item = tag.Get<Item>(key);
+                EnchantmentItems.Add(item);
+            }
+        }
     }
 }

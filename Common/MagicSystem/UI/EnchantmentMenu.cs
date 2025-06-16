@@ -79,8 +79,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             for (int i = 0; i < ctx.staffToEdit.GetTimedSlotCount(); i++)
             {
                 var slot = new EnchantmentSlot(index: _grid._items.Count, isTimedSlot: true);
-                slot.SetContext(ctx);
-       
+                slot.SetContext(ctx);    
                 _timedGrid.Add(slot);
             }
             _grid.Recalculate();

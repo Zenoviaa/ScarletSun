@@ -28,6 +28,16 @@ Items: {
 		DisplayName: Sparkling Boom Enchantment
 		Tooltip: ""
 	}
+
+	FirecrackerEnchantment: {
+		DisplayName: Firecracker Enchantment
+		Tooltip: ""
+	}
+
+	RevolvingLightsEnchantment: {
+		DisplayName: Revolving Lights Enchantment
+		Tooltip: ""
+	}
 }
 
 Projectiles.MagicProjectile.DisplayName: Magic Projectile

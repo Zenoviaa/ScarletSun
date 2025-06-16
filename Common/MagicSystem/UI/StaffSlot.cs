@@ -11,6 +11,7 @@ namespace ScarletSun.Common.MagicSystem.UI
 {
     internal class StaffSlot : UIElement
     {
+        private StaffEditingContext _ctx;
         private readonly int _context;
         private readonly float _scale;
         internal Item Item;
@@ -52,6 +53,10 @@ namespace ScarletSun.Common.MagicSystem.UI
                 return true;
 
             return false;
+        }
+        public void SetContext(StaffEditingContext ctx)
+        {
+            _ctx = ctx;
         }
 
         internal void HandleMouseItem()
@@ -95,8 +100,8 @@ namespace ScarletSun.Common.MagicSystem.UI
             int offset = (int)(cardTexture.Size().Y / 2);
             spriteBatch.Draw(cardTexture, rectangle.TopLeft(), null, Color.White, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
 
-
-            ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
+            Item item = _ctx.staffToEdit.Item;
+            ItemSlot.DrawItemIcon(item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
             Main.inventoryScale = oldScale;
         }
     }

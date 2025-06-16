@@ -54,8 +54,11 @@ namespace ScarletSun.Common.MagicSystem.UI
             {
                 var slot = new EnchantmentSlot(index: _grid._items.Count, isTimedSlot: true);
                 slot.SetContext(ctx);
+       
                 _grid.Add(slot);
             }
+
+            _staffSlot.SetContext(ctx);
             _elementSlot.SetContext(ctx);
         }
 
@@ -74,9 +77,9 @@ namespace ScarletSun.Common.MagicSystem.UI
             BackgroundColor = Color.Transparent;
             BorderColor = Color.Transparent;
             _grid.Width.Set(0, 1f);
-            _grid.Height.Set(0, 0.5f);
+            _grid.Height.Set(0, 0.4f);
             _grid.HAlign = 0.5f;
-            _grid.VAlign = 1f;
+            _grid.VAlign = 0.9f;
             _grid.ListPadding = 2f;   
             Append(_grid);
 
@@ -85,7 +88,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             Append(_staffSlot);
 
             _elementSlot.HAlign = 0.25f;
-            _elementSlot.VAlign = 0.3f;
+            _elementSlot.VAlign = 0.38f;
             Append(_elementSlot);
 
             SetPos();

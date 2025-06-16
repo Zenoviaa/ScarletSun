@@ -69,7 +69,7 @@ namespace ScarletSun.Common.MagicSystem
                 {
                     Element = staff.Element;
                     Enchantments.Clear();
-                    foreach (var enchantment in staff.Enchantments)
+                    foreach (var enchantment in staff.GetEnchantments())
                     {
                         Enchantments.Add(enchantment);
                     }

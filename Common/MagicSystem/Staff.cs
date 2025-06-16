@@ -10,7 +10,6 @@ namespace ScarletSun.Common.MagicSystem
     internal abstract class Staff : ModItem
     {
         private Element _element;
-        private List<Enchantment> _enchantments;
         private List<Item> _enchantmentItems;
         public Element Element
         {
@@ -23,16 +22,6 @@ namespace ScarletSun.Common.MagicSystem
             set
             {
                 _element = value;
-            }
-        }
-
-        public List<Enchantment> Enchantments
-        {
-            get
-            {
-                if (_enchantments == null)
-                    _enchantments = new List<Enchantment>();
-                return _enchantments;
             }
         }
 
@@ -63,6 +52,20 @@ namespace ScarletSun.Common.MagicSystem
             Item.shootSpeed = 10;
             Item.shoot = ModContent.ProjectileType<MagicProjectile>();
         }
+
+        public List<Enchantment> GetEnchantments()
+        {
+            List<Enchantment> enchantments = new List<Enchantment>();
+            foreach(var item in _enchantmentItems)
+            {
+                if(item.ModItem is Enchantment enchantment)
+                {
+                    enchantments.Add(enchantment);
+                }
+            }
+            return enchantments;
+        }
+
         internal void SetEnchantmentAtIndex(Item item, int index)
         {
             if (EnchantmentItems.Count > index)

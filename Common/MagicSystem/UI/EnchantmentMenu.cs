@@ -57,6 +57,7 @@ namespace ScarletSun.Common.MagicSystem.UI
        
                 _grid.Add(slot);
             }
+            _grid.Recalculate();
 
             _staffSlot.SetContext(ctx);
             _elementSlot.SetContext(ctx);

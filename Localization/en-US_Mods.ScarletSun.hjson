@@ -23,6 +23,11 @@ Items: {
 		DisplayName: No Staff
 		Tooltip: ""
 	}
+
+	SparklingBoomEnchantment: {
+		DisplayName: Sparkling Boom Enchantment
+		Tooltip: ""
+	}
 }
 
 Projectiles.MagicProjectile.DisplayName: Magic Projectile

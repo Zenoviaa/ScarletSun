@@ -128,7 +128,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             Vector2 drawOrigin = slotTexture.Size() / 2;
             Vector2 iconCenterPos = rectangle.TopLeft() + cardTexture.Size() / 2;
             spriteBatch.Draw(slotTexture, iconCenterPos, null, color2, 0f, drawOrigin, _scale, SpriteEffects.None, 0f);
-            ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
+            ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale * 2, 32, Color.White);
             Main.inventoryScale = oldScale;
         }
     }

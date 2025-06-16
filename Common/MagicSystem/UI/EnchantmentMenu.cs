@@ -74,8 +74,8 @@ namespace ScarletSun.Common.MagicSystem.UI
         public override void OnInitialize()
         {
             base.OnInitialize();
-            Width.Pixels = 880;
-            Height.Pixels = 880;
+            Width.Pixels = 704;
+            Height.Pixels = 704;
             Left.Pixels = RelativeLeft;
             Top.Pixels = RelativeTop;
             BackgroundColor = Color.Transparent;

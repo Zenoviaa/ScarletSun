@@ -14,9 +14,8 @@ namespace ScarletSun.Common.MagicSystem.UI
         public EnchantmentInventorySlot()
         {
             _context = ItemSlot.Context.BankItem;
-            OnMouseOver += On_MouseOver;
             OnLeftClick += On_LeftClick;
-        
+
 
             string texturePath = GetType().DirectoryHere() + "/EnchantmentSlot";
             BackgroundTexture = ModContent.Request<Texture2D>(texturePath, ReLogic.Content.AssetRequestMode.ImmediateLoad);
@@ -31,19 +30,6 @@ namespace ScarletSun.Common.MagicSystem.UI
 
         public Asset<Texture2D> BackgroundTexture;
         public Item Item { get; set; }
-        private void On_MouseOver(UIMouseEvent evt, UIElement listeningElement)
-        {
-            //No item don't do anything
-            if (Item == null)
-                return;
-
-
-            Main.hoverItemName = Item.Name;
-            Main.HoverItem = Item.Clone();
-            string newName = Main.HoverItem.Name + (Main.HoverItem.ModItem != null ? " [" + Main.HoverItem.ModItem.Mod.Name + "]" : "");
-            Main.HoverItem.SetNameOverride(newName);
-        }
-
         private void On_LeftClick(UIMouseEvent evt, UIElement listeningElement)
         {
             if (Item == null)
@@ -52,6 +38,7 @@ namespace ScarletSun.Common.MagicSystem.UI
                 return;
 
             Main.mouseItem = Item.Clone();
+            //TODO: Play UI click sound
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -76,6 +63,15 @@ namespace ScarletSun.Common.MagicSystem.UI
 
             Color iconColor = Main.mouseItem.IsAir ? Color.White : Color.Lerp(Color.White, Color.Black, 0.8f);
             ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, 2, 32, iconColor);
+
+
+            //Handle hovering
+            bool isHovering = rectangle.Contains(Main.MouseScreen.ToPoint());
+            if (isHovering)
+            {
+                Main.hoverItemName = Item.Name;
+                Main.HoverItem = Item;
+            }
         }
     }
 }

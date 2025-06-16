@@ -122,10 +122,12 @@ namespace ScarletSun.Common.MagicSystem.UI
 
 
             //Enchantment Slot
-            cardTexture = _isTimedSlot
+            Texture2D slotTexture = _isTimedSlot
                 ? ModContent.Request<Texture2D>(GetType().DirectoryHere() + "/TimedEnchantmentSlot").Value
                 : ModContent.Request<Texture2D>(GetType().DirectoryHere() + "/EnchantmentSlot").Value;
-            spriteBatch.Draw(cardTexture, rectangle.TopLeft() + new Vector2(0, 38), null, color2, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
+            Vector2 drawOrigin = slotTexture.Size() / 2;
+            Vector2 iconCenterPos = rectangle.TopLeft() + cardTexture.Size() / 2;
+            spriteBatch.Draw(slotTexture, iconCenterPos, null, color2, 0f, drawOrigin, _scale, SpriteEffects.None, 0f);
             ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
             Main.inventoryScale = oldScale;
         }

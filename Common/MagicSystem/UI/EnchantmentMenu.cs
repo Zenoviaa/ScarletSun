@@ -24,6 +24,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         private Texture2D _enchantmentPanel;
         private StaffEditingContext _ctx;
         private UIGrid _grid;
+        private UIGrid _timedGrid;
         private EnchantingPanelBackground _background;
 
         private StaffSlot _staffSlot;
@@ -31,7 +32,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         internal EnchantmentMenu() : base()
         {
             _grid = new UIGrid();
-         
+            _timedGrid = new UIGrid();
             _background = new EnchantingPanelBackground();
             _elementSlot = new ElementSlot();   
             _staffSlot = new StaffSlot();
@@ -44,6 +45,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         {
             _ctx = ctx;
             _grid.Clear();
+            _timedGrid.Clear();
             for (int i = 0; i < ctx.staffToEdit.GetNormalSlotCount(); i++)
             {
                 var slot = new EnchantmentSlot(index: _grid._items.Count, isTimedSlot: false);
@@ -51,14 +53,17 @@ namespace ScarletSun.Common.MagicSystem.UI
                 _grid.Add(slot);
             }
 
+      
             for (int i = 0; i < ctx.staffToEdit.GetTimedSlotCount(); i++)
             {
                 var slot = new EnchantmentSlot(index: _grid._items.Count, isTimedSlot: true);
                 slot.SetContext(ctx);
        
-                _grid.Add(slot);
+                _timedGrid.Add(slot);
             }
             _grid.Recalculate();
+            _timedGrid.Recalculate();
+
 
             _staffSlot.SetContext(ctx);
             _elementSlot.SetContext(ctx);
@@ -84,19 +89,26 @@ namespace ScarletSun.Common.MagicSystem.UI
 
             Append(_background);
 
-            _grid.Width.Set(0, 0.9f);
+            _grid.Width.Set(0, 0.8f);
             _grid.Height.Set(0, 0.4f);
             _grid.HAlign = 0.5f;
-            _grid.VAlign = 0.9f;
+            _grid.VAlign = 0.65f;
             _grid.ListPadding = 2f;   
             Append(_grid);
+
+            _timedGrid.Width.Set(0, 0.8f);
+            _timedGrid.Height.Set(0, 0.4f);
+            _timedGrid.HAlign = 0.5f;
+            _timedGrid.VAlign = 1f;
+            _timedGrid.ListPadding = 2f;
+            Append(_timedGrid);
 
             _staffSlot.HAlign = 0.05f;
             _staffSlot.VAlign = 0.05f;
             Append(_staffSlot);
 
-            _elementSlot.HAlign = 0.25f;
-            _elementSlot.VAlign = 0.38f;
+            _elementSlot.HAlign = 0.2f;
+            _elementSlot.VAlign = 0.28f;
             Append(_elementSlot);
 
             SetPos();

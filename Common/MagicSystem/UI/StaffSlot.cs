@@ -102,7 +102,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             spriteBatch.Draw(cardTexture, rectangle.TopLeft(), null, Color.White, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
 
             Item item = _ctx.staffToEdit.Item;
-            ItemSlot.DrawItemIcon(item, _context, spriteBatch, centerPos, _scale, 32, Color.White);
+            ItemSlot.DrawItemIcon(item, _context, spriteBatch, centerPos, _scale * 2, 32, Color.White);
             Main.inventoryScale = oldScale;
         }
     }

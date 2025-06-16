@@ -75,13 +75,12 @@ namespace ScarletSun.Common.MagicSystem.UI
             }
 
             //Draw Backing
-            Color color2 = Main.inventoryBack;
             Vector2 pos = rectangle.TopLeft();
 
             //Draw the background and then draw the item icon
             Texture2D value = ElementSlotAsset.Value;
             Vector2 centerPos = pos + rectangle.Size() / 2f;
-            spriteBatch.Draw(value, rectangle.TopLeft(), null, color2, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(value, rectangle.TopLeft(), null, Color.White, 0f, default(Vector2), _scale, SpriteEffects.None, 0f);
 
             ItemSlot.DrawItemIcon(Item, _context, spriteBatch, centerPos, _scale, 64, Color.White);
             Main.inventoryScale = oldScale;

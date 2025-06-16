@@ -16,6 +16,7 @@ using Terraria.ModLoader.UI.Elements;
 using Terraria.ModLoader;
 using ScarletSun.Common.Helpers;
 using System.Collections;
+using ReLogic.Content;
 
 namespace ScarletSun.Common.MagicSystem.UI
 {
@@ -25,17 +26,36 @@ namespace ScarletSun.Common.MagicSystem.UI
         private StaffEditingContext _ctx;
         private UIGrid _grid;
         private UIGrid _timedGrid;
-        private EnchantingPanelBackground _background;
+        private UIImage _backgroundSquare;
         private InventoryMenu _inventoryMenu;
 
         private StaffSlot _staffSlot;
         private ElementSlot _elementSlot;
+
+        private static readonly Asset<Texture2D> BackgroundSquareTexture;
+        static EnchantmentMenu()
+        {       
+            // Don't run this on the server
+            if (Main.dedServ)
+                return;
+            string texturePath = AssetHelper.DirectoryHere(typeof(EnchantmentMenu)) + "/EnchantingMenu";
+            BackgroundSquareTexture = ModContent.Request<Texture2D>(texturePath);
+        }
+
+
         internal EnchantmentMenu() : base()
         {
             _grid = new UIGrid();
             _timedGrid = new UIGrid();
             _inventoryMenu = new InventoryMenu();
-            _background = new EnchantingPanelBackground();
+            _backgroundSquare = new UIImage(BackgroundSquareTexture)
+            {
+                HAlign = 0f,
+                VAlign = 0f,
+                AllowResizingDimensions = true,
+                ScaleToFit=true,
+            };
+
             _elementSlot = new ElementSlot();   
             _staffSlot = new StaffSlot();
         }
@@ -89,7 +109,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             BorderColor = Color.Transparent;
 
 
-            Append(_background);
+            Append(_backgroundSquare);
 
             _grid.Width.Set(0, 0.8f);
             _grid.Height.Set(0, 0.35f);
@@ -119,7 +139,6 @@ namespace ScarletSun.Common.MagicSystem.UI
             SetPos();
         }
 
-
         public override void OnDeactivate()
         {
             base.OnDeactivate();
@@ -135,8 +154,8 @@ namespace ScarletSun.Common.MagicSystem.UI
             Left.Pixels = RelativeLeft;
             Top.Pixels = RelativeTop;
 
-
-
+            _backgroundSquare.Width = Width;
+            _backgroundSquare.Height = Height;
         }
         public override void Update(GameTime gameTime)
         {

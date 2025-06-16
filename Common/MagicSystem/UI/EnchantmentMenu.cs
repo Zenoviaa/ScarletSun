@@ -60,8 +60,8 @@ namespace ScarletSun.Common.MagicSystem.UI
             _staffSlot = new StaffSlot();
         }
 
-        internal int RelativeLeft => Main.screenWidth / 2 - (int)Width.Pixels / 2;
-        internal int RelativeTop => Main.screenHeight / 2 - (int)Height.Pixels / 2;
+        internal int RelativeLeft => ScreenHelper.TrueScreenWidth / 2 - (int)Width.Pixels / 2;
+        internal int RelativeTop => ScreenHelper.TrueScreenHeight / 2 - (int)Height.Pixels / 2;
 
         public void UseContext(StaffEditingContext ctx)
         {

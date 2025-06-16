@@ -35,7 +35,8 @@ namespace ScarletSun.Common.MagicSystem.UI
         internal void EmptyUI()
         {
             //throw new NotImplementedException();
-            var noStaff = new NoStaff();
+            Item item = new Item(ModContent.ItemType<NoStaff>());
+            var noStaff = item.ModItem as Staff;
             StaffEditingContext ctx = new StaffEditingContext(noStaff);
             EnchantmentMenu menu = enchantmentMenuUI.enchantmentMenu;
             menu.UseContext(ctx);

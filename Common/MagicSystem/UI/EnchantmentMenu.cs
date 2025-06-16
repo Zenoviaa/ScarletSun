@@ -24,20 +24,21 @@ namespace ScarletSun.Common.MagicSystem.UI
         private Texture2D _enchantmentPanel;
         private StaffEditingContext _ctx;
         private UIGrid _grid;
+        private EnchantingPanelBackground _background;
+
         private StaffSlot _staffSlot;
         private ElementSlot _elementSlot;
         internal EnchantmentMenu() : base()
         {
             _grid = new UIGrid();
+         
+            _background = new EnchantingPanelBackground();
             _elementSlot = new ElementSlot();   
             _staffSlot = new StaffSlot();
         }
 
-        internal const int width = 412;
-        internal const int height = 352;
-
-
-   
+        internal int RelativeLeft => Main.screenWidth / 2 - (int)Width.Pixels / 2;
+        internal int RelativeTop => Main.screenHeight / 2 - (int)Height.Pixels / 2;
 
         public void UseContext(StaffEditingContext ctx)
         {
@@ -73,10 +74,16 @@ namespace ScarletSun.Common.MagicSystem.UI
         public override void OnInitialize()
         {
             base.OnInitialize();
-            Width.Pixels = width;
-            Height.Pixels = height;
+            Width.Pixels = 880;
+            Height.Pixels = 880;
+            Left.Pixels = RelativeLeft;
+            Top.Pixels = RelativeTop;
             BackgroundColor = Color.Transparent;
             BorderColor = Color.Transparent;
+
+
+            Append(_background);
+
             _grid.Width.Set(0, 0.9f);
             _grid.Height.Set(0, 0.4f);
             _grid.HAlign = 0.5f;
@@ -108,24 +115,11 @@ namespace ScarletSun.Common.MagicSystem.UI
 
         private void SetPos()
         {
-            var config = ModContent.GetInstance<ScarletSunClientConfig>();
-            Vector2 ratioPos = new Vector2(config.EnchantMenuX, config.EnchantMenuY);
-            if (ratioPos.X < 0f || ratioPos.X > 100f)
-            {
-                ratioPos.X = 50;
-            }
+            Left.Pixels = RelativeLeft;
+            Top.Pixels = RelativeTop;
 
-            if (ratioPos.Y < 0f || ratioPos.Y > 100f)
-            {
-                ratioPos.Y = 3;
-            }
 
-            Vector2 drawPos = ratioPos;
-            drawPos.X = (int)(drawPos.X * 0.01f * Main.screenWidth);
-            drawPos.Y = (int)(drawPos.Y * 0.01f * Main.screenHeight);
 
-            Left.Pixels = drawPos.X;
-            Top.Pixels = drawPos.Y;
         }
         public override void Update(GameTime gameTime)
         {
@@ -133,78 +127,6 @@ namespace ScarletSun.Common.MagicSystem.UI
 
             //Constantly lock the UI in the position regardless of resolution changes
             SetPos();
-        }
-
-
-        public Color Color = Color.White;
-        public bool ScaleToFit = false;
-        public float ImageScale = 1f;
-        public float Rotation;
-        public bool AllowResizingDimensions = true;
-        public Vector2 NormalizedOrigin = Vector2.Zero;
-        private static Vector2? _drag = null;
-        private static bool _isDragging;
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            base.DrawSelf(spriteBatch);
-            var config = ModContent.GetInstance<ScarletSunClientConfig>();
-            Vector2 vector = _enchantmentPanel.Size();
-            Vector2 ratioPos = new Vector2(config.EnchantMenuX, config.EnchantMenuY);
-            if (ratioPos.X < 0f || ratioPos.X > 100f)
-            {
-                ratioPos.X = 50;
-            }
-
-            if (ratioPos.Y < 0f || ratioPos.Y > 100f)
-            {
-                ratioPos.Y = 3;
-            }
-
-            Vector2 drawPos = ratioPos;
-            drawPos.X = (int)(drawPos.X * 0.01f * Main.screenWidth);
-            drawPos.Y = (int)(drawPos.Y * 0.01f * Main.screenHeight);
-
-            Rectangle mouseRect = new Rectangle((int)Main.MouseScreen.X, (int)Main.MouseScreen.Y, 8, 8);
-            Vector2 size = new Vector2(480, 155);
-            Rectangle barRect = Utils.CenteredRectangle(drawPos + size / 2, size * Main.UIScale);
-
-            MouseState ms = Mouse.GetState();
-            Vector2 mousePos = Main.MouseScreen;
-            Vector2 newScreenRatioPosition = ratioPos;
-            if (ms.LeftButton == ButtonState.Pressed && !_isDragging && barRect.Intersects(mouseRect))
-            {
-                _isDragging = true;
-            }
-            spriteBatch.Draw(_enchantmentPanel, drawPos, null, Color, Rotation, vector * NormalizedOrigin, ImageScale, SpriteEffects.None, 0f);
-            //Handle dragging
-            if (_isDragging)
-            {
-                if (!_drag.HasValue)
-                    _drag = mousePos - drawPos;
-
-                Vector2 newCorner = mousePos - _drag.GetValueOrDefault(Vector2.Zero);
-
-                // Convert the new corner position into a screen ratio position.
-                newScreenRatioPosition.X = (100f * newCorner.X) / Main.screenWidth;
-                newScreenRatioPosition.Y = (100f * newCorner.Y) / Main.screenHeight;
-
-                // Compute the change in position. If it is large enough, actually move the meter
-                Vector2 delta = newScreenRatioPosition - ratioPos;
-                if (Math.Abs(delta.X) >= 0.05f || Math.Abs(delta.Y) >= 0.05f)
-                {
-                    config.EnchantMenuX = newScreenRatioPosition.X;
-                    config.EnchantMenuY = newScreenRatioPosition.Y;
-                }
-
-                if (ms.LeftButton == ButtonState.Released)
-                {
-                    _isDragging = false;
-                    _drag = null;
-                    MethodInfo saveMethodInfo = typeof(ConfigManager).GetMethod("Save", BindingFlags.Static | BindingFlags.NonPublic);
-                    if (saveMethodInfo is not null)
-                        saveMethodInfo.Invoke(null, new object[] { config });
-                }
-            }
         }
     }
 }

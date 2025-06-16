@@ -73,6 +73,7 @@ namespace ScarletSun.Common.MagicSystem.UI
             _grid.HAlign = 0.5f;
             _grid.ListPadding = 2f;
             Append(_grid);
+            SetPos();
         }
 
 

@@ -24,13 +24,17 @@ namespace ScarletSun.Common.MagicSystem.UI
         private Texture2D _enchantmentPanel;
         private StaffEditingContext _ctx;
         private UIGrid _grid;
+        private StaffSlot _staffSlot;
+        private ElementSlot _elementSlot;
         internal EnchantmentMenu() : base()
         {
             _grid = new UIGrid();
+            _elementSlot = new ElementSlot();   
+            _staffSlot = new StaffSlot();
         }
 
-        internal const int width = 480;
-        internal const int height = 155;
+        internal const int width = 412;
+        internal const int height = 352;
 
 
    
@@ -52,6 +56,7 @@ namespace ScarletSun.Common.MagicSystem.UI
                 slot.SetContext(ctx);
                 _grid.Add(slot);
             }
+            _elementSlot.SetContext(ctx);
         }
 
         public override void OnActivate()
@@ -69,12 +74,20 @@ namespace ScarletSun.Common.MagicSystem.UI
             BackgroundColor = Color.Transparent;
             BorderColor = Color.Transparent;
             _grid.Width.Set(0, 1f);
-            _grid.Height.Set(0, 1f);
+            _grid.Height.Set(0, 0.5f);
             _grid.HAlign = 0.5f;
             _grid.VAlign = 1f;
-            _grid.ListPadding = 2f;
-         
+            _grid.ListPadding = 2f;   
             Append(_grid);
+
+            _staffSlot.HAlign = 0.05f;
+            _staffSlot.VAlign = 0.05f;
+            Append(_staffSlot);
+
+            _elementSlot.HAlign = 0.25f;
+            _elementSlot.VAlign = 0.3f;
+            Append(_elementSlot);
+
             SetPos();
         }
 

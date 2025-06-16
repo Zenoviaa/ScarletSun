@@ -34,7 +34,7 @@ namespace ScarletSun.Common.MagicSystem.UI
         }
         internal void EmptyUI()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         internal void CloseUI()

@@ -1,9 +1,6 @@
-﻿using ScarletSun.Common.MagicSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using ScarletSun.Common.MagicSystem;
+using Terraria;
 
 namespace ScarletSun.Items.Enchantments.Radiant
 {
@@ -12,7 +9,8 @@ namespace ScarletSun.Items.Enchantments.Radiant
         public override void AI(MagicProjectile mProj)
         {
             base.AI(mProj);
-
+            Projectile projectile = mProj.Projectile;
+            projectile.velocity = projectile.velocity.RotatedBy(MathHelper.ToRadians(1));
         }
     }
 }
